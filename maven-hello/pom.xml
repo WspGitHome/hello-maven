@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>hello-maven</artifactId>
+        <groupId>com.maven.hellomaven</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>maven-hello</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>maven-hello</finalName>
+        <plugins>
+            <!--compile with jdk1.8-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <!--use UTF-8 coding deal with resources file-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <test>HelloTest</test>
+                    <test>AssertTest</test>
+                    <!--skip the test method2-->
+                    <!--<skipTests>true</skipTests>-->
+                </configuration>
+            </plugin>
+            <!--set main class-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.maven.hellomaven.hellword.HelloWorld</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--customize-->
+            <plugin>
+                <groupId>com.maven.hellomaven</groupId>
+                <artifactId>maven-hello-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <!--goal以该阶段为准,若为空以插件里默认的为主,自定义的插件若也为空,不执行-->
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>count-codeLine</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includes>
+                        <include>properties</include>
+                        <include>java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

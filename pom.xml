@@ -8,54 +8,83 @@
     <groupId>com.maven.hellomaven</groupId>
     <artifactId>hello-maven</artifactId>
     <name>Hello Maven</name>
+    <modules>
+        <module>maven-hello</module>
+        <module>maven-hello-plugin</module>
+    </modules>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven-compiler-plugin>3.8.0</maven-compiler-plugin>
+        <java-version>1.8</java-version>
+        <junit>4.10</junit>
+        <maven-shade-plugin>1.4</maven-shade-plugin>
+        <maven-surefire-plugin>2.22.1</maven-surefire-plugin>
+        <maven-plugin-api>3.6.0</maven-plugin-api>
+        <maven-resources-plugin>3.1.0</maven-resources-plugin>
+        <!--skip the test method1-->
+        <!--<maven.test.skip>true</maven.test.skip>-->
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-plugin-api</artifactId>
+                <version>${maven-plugin-api}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin}</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <!--设置主类-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>1.4</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.maven.hellomaven.hellword.HelloWorld</mainClass>
-                                </transformer>
-                            </transformers>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <!--compile with jdk1.8-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin}</version>
+                    <configuration>
+                        <source>${java-version}</source>
+                        <target>${java-version}</target>
+                    </configuration>
+                </plugin>
+                <!--use UTF-8 coding deal with resources file-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin}</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin}</version>
+                </plugin>
+                <!--set main class-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>${maven-shade-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.maven.hellomaven</groupId>
+                    <artifactId>maven-hello-plugin</artifactId>
+                    <version>${project.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
     </build>
 </project>
