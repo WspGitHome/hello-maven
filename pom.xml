@@ -19,6 +19,8 @@
         <maven-compiler-plugin>3.8.0</maven-compiler-plugin>
         <java-version>1.8</java-version>
         <junit>4.10</junit>
+        <eventBus>3.1.1</eventBus>
+        <springboot>2.2.7.RELEASE</springboot>
         <maven-shade-plugin>1.4</maven-shade-plugin>
         <maven-surefire-plugin>2.22.1</maven-surefire-plugin>
         <maven-plugin-api>3.6.0</maven-plugin-api>
@@ -29,6 +31,15 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${springboot}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
@@ -41,7 +52,15 @@
                 <artifactId>maven-plugin-api</artifactId>
                 <version>${maven-plugin-api}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.greenrobot</groupId>
+                <artifactId>eventbus</artifactId>
+                <version>${eventBus}</version>
+            </dependency>
+
         </dependencies>
+
     </dependencyManagement>
 
 

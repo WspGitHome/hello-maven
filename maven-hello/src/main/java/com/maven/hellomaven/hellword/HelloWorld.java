@@ -1,5 +1,7 @@
 package com.maven.hellomaven.hellword;
 
+import java.util.Calendar;
+
 /**
  * @Packagename com.maven.hellomaven.hellword
  * @Classname HelloWorld
@@ -14,8 +16,6 @@ public class HelloWorld {
     }
 
     public static void main(String[] args) {
-
-        System.out.println(helloWorld());
 
     }
 
