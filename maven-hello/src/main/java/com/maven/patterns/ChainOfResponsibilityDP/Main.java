@@ -3,9 +3,13 @@ package com.maven.patterns.ChainOfResponsibilityDP;
 
 import com.maven.patterns.ChainOfResponsibilityDP.demo1.DataProcesser;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @Packagename com.wanfangdata.researchersbeetlfront.learn.ChainOfResponsibilityDP
@@ -18,7 +22,24 @@ import java.util.List;
  * @Version 1.0
  */
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        ExecutorService service = Executors.newFixedThreadPool(2000);
+        CountDownLatch follower = new CountDownLatch(2000);
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 2000; i++) {
+            service.execute(() -> task(follower));
+        }
+        try {
+            follower.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            service.shutdown();
+        }
+        System.out.println("take time:" + (System.currentTimeMillis() - start));
+    }
+
+    private static void task(CountDownLatch countDownLatch) {
         List<String> operations = new ArrayList<>();
         String str = "Today Weather Is Bad ! / 今天天气很糟糕~";
         //Base64加密
@@ -37,10 +58,16 @@ public class Main {
         str = Base64.getEncoder().encodeToString(str.getBytes());
         //记录操作
         operations.add("base64");
-        System.out.println("加密完成后字符：" + str);
+        //System.out.println(System.currentTimeMillis() + "线程：" + Thread.currentThread().getName() + ">加密完成后字符：" + str);
         //拼接随机字符
         byte[] bytes = str.getBytes();
-        String result = DataProcesser.processData(bytes, operations);
-        System.out.println("解密完成后字符：" + result);
+        String result = null;
+        try {
+            result = DataProcesser.processData(bytes, operations);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        // System.out.println(System.currentTimeMillis() + "线程：" + Thread.currentThread().getName() + ">解密完成后字符：" + result);
+        countDownLatch.countDown();
     }
 }

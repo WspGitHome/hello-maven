@@ -1,5 +1,7 @@
 package com.maven.patterns.ChainOfResponsibilityDP.demo1;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @Packagename com.wanfangdata.researchersbeetlfront.learn.ChainOfResponsibilityDP.demo1
  * @Classname HandlerB
@@ -11,13 +13,14 @@ package com.maven.patterns.ChainOfResponsibilityDP.demo1;
 public class HandlerAppendDelete implements Handler {
 
     @Override
-    public void dataProcess(StringBuffer dataStr, Handler handler, String strs) {
+    public void dataProcess(StringBuffer dataStr, Handler handler, String strs, AtomicInteger size) {
+        size.incrementAndGet();
         if (strs.contains("append:")) {
             String subString = dataStr.toString().substring(0, dataStr.toString().lastIndexOf(strs.split(":")[1]));
             dataStr.replace(0, dataStr.length(), subString);
             return;
         }
         HandlerChain chain = new HandlerChain();
-        chain.dataProcess(dataStr, handler, strs);
+        chain.dataProcess(dataStr, handler, strs, size);
     }
 }

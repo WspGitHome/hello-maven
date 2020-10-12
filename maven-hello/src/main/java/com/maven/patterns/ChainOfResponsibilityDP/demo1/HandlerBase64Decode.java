@@ -3,6 +3,7 @@ package com.maven.patterns.ChainOfResponsibilityDP.demo1;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @Packagename com.wanfangdata.researchersbeetlfront.learn.ChainOfResponsibilityDP.demo1
@@ -15,7 +16,8 @@ import java.util.Base64;
 public class HandlerBase64Decode implements Handler {
 
     @Override
-    public void dataProcess(StringBuffer dataStr, Handler handler, String strs) {
+    public void dataProcess(StringBuffer dataStr, Handler handler, String strs, AtomicInteger size) {
+        size.incrementAndGet();
         if (strs.contains("base64")) {
             try {
                 String subString = new String(Base64.getDecoder().decode(dataStr.toString().getBytes()), "utf-8");
@@ -26,6 +28,6 @@ public class HandlerBase64Decode implements Handler {
             }
         }
         HandlerChain chain = new HandlerChain();
-        chain.dataProcess(dataStr, handler, strs);
+        chain.dataProcess(dataStr, handler, strs, size);
     }
 }

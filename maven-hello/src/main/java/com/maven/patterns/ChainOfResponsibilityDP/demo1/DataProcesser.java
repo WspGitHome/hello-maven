@@ -3,6 +3,7 @@ package com.maven.patterns.ChainOfResponsibilityDP.demo1;
 import java.io.UnsupportedEncodingException;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @Packagename com.wanfangdata.researchersbeetlfront.learn.ChainOfResponsibilityDP.demo1
@@ -26,8 +27,8 @@ public class DataProcesser {
         StringBuffer sb = new StringBuffer();
         sb.append(new String(bytes, "utf-8"));
         strs.stream().forEach(e -> {
-            HandlerChain.getInstance().dataProcess(sb, (dataStr, handler, strs1) -> {
-            }, e);
+            HandlerChain.getInstance().dataProcess(sb, (dataStr, handler, strs1, size) -> {
+            }, e, new AtomicInteger(0));
         });
         return sb.toString();
     }
