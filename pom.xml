@@ -21,6 +21,8 @@
         <junit>4.10</junit>
         <eventBus>3.1.1</eventBus>
         <springboot>2.2.7.RELEASE</springboot>
+        <reflections>0.9.11</reflections>
+
         <maven-shade-plugin>1.4</maven-shade-plugin>
         <maven-surefire-plugin>2.22.1</maven-surefire-plugin>
         <maven-plugin-api>3.6.0</maven-plugin-api>
@@ -57,6 +59,12 @@
                 <groupId>org.greenrobot</groupId>
                 <artifactId>eventbus</artifactId>
                 <version>${eventBus}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>${reflections}</version>
             </dependency>
 
         </dependencies>
