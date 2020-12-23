@@ -9,5 +9,12 @@ package com.maven.patterns.AnnotationAndEnum;
  * @Version 1.0
  */
 public enum NotificationEmergencyLevel {
-    SEVERE, URGENCY, NORMAL, TRIVIAL
+    SEVERE, URGENCY, NORMAL, TRIVIAL;
+    void print() {
+        System.out.println(1111);
+    }
+
+    public static void main(String[] args) {
+        NotificationEmergencyLevel.NORMAL.print();
+    }
 }

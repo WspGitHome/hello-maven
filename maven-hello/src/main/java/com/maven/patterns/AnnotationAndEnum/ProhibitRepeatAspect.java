@@ -23,8 +23,7 @@ public class ProhibitRepeatAspect {
 
 /*    @Resource
     private RedisTemplate redisTemplate;*/
-
-    @Pointcut("@annotation(com.wanfangdata.researchersbeetlfront.learn.AnnotationAndEnum.ProhibitRepeat)")
+    @Pointcut("@annotation(com.maven.patterns.AnnotationAndEnum.ProhibitRepeat)")
     private void serviceNoRepeat() {
 
     }

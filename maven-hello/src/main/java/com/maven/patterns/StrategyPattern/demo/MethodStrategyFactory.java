@@ -1,5 +1,7 @@
 package com.maven.patterns.StrategyPattern.demo;
 
+import com.maven.patterns.StrategyPattern.demo.*;
+
 import java.util.HashMap;
 import java.util.Map;
 

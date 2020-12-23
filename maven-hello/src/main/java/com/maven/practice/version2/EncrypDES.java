@@ -1,4 +1,4 @@
-package com.maven.practice;
+package com.maven.practice.version2;
 
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;

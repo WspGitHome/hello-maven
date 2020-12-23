@@ -1,4 +1,4 @@
-package com.maven.practice;
+package com.maven.practice.version2;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
@@ -19,6 +19,6 @@ public class Base64DataProcess implements HandlerDataProcesser {
 
     @Override
     public String afterDataProcess(String data) throws UnsupportedEncodingException {
-        return new String(Base64.getDecoder().decode(data.getBytes()),"utf-8");
+        return new String(Base64.getDecoder().decode(data.getBytes()), "utf-8");
     }
 }

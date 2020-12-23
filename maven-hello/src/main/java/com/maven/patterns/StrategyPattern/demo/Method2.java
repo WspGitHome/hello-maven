@@ -13,4 +13,9 @@ public class Method2 implements DealMethod {
     public void dealmethod() {
         System.out.println("This is Method2 !");
     }
+
+    @Override
+    public String getMethodName() {
+        return "2";
+    }
 }

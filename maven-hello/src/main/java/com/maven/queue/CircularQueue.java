@@ -1,10 +1,10 @@
-package com.maven.Queue;
+package com.maven.queue;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * @Packagename com.maven.Queue
+ * @Packagename com.maven.queue
  * @Classname CircularQueue
  * @Description
  * @Authors Mr.Wu

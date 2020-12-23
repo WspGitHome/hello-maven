@@ -1,4 +1,4 @@
-package com.maven.practice;
+package com.maven.practice.version1;
 
 
 import org.reflections.Reflections;
@@ -23,8 +23,6 @@ public class DataProcesser {
 
     private static HandlerDataProcesser[] dataProcesser;
 
-    private static ArrayList<Class> achieveClass = new ArrayList<>();
-
     private static DataProcesser single = new DataProcesser();
 
     static {
@@ -34,8 +32,12 @@ public class DataProcesser {
 
     private static void initProcesser() {
         dataProcessList = new ArrayList<>();
-        if (!ObjectUtils.isEmpty(achieveClass)) {
-            dataProcessList.add((HandlerDataProcesser) achieveClass);
+        try {
+            getAllAcheiveClass();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
         }
     }
 
@@ -86,15 +88,19 @@ public class DataProcesser {
     }
 
     private static List<HandlerDataProcesser> getAllAcheiveClass() throws IllegalAccessException, InstantiationException {
-        Reflections reflections = new Reflections(HandlerDataProcesser.class.getPackage().getName());
+        Reflections reflections = new Reflections("com.maven");
         Set<Class<? extends HandlerDataProcesser>> typesOfClazz = reflections.getSubTypesOf(HandlerDataProcesser.class);
+        String currentClass = new Object() {
+            public String getClassName() {
+                return this.getClass().getName();
+            }
+        }.getClassName();
         for (Class<? extends HandlerDataProcesser> clazz : typesOfClazz) {
+            if (clazz.getName().contains("$") && clazz.getName().substring(0, clazz.getName().lastIndexOf("$")).equals(currentClass.substring(0, currentClass.lastIndexOf("$")))) {
+                continue;
+            }
             dataProcessList.add(clazz.newInstance());
         }
         return dataProcessList;
-    }
-
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
-        getAllAcheiveClass();
     }
 }

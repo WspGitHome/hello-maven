@@ -10,6 +10,16 @@ package com.maven.patterns.entity;
  */
 public class Student {
 
+    private int salary;
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
     static {
         System.out.println("loaded the staic code!");
     }

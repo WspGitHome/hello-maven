@@ -9,5 +9,19 @@ package com.maven.patterns.StrategyPattern.demo;
  * @Version 1.0
  */
 public interface DealMethod {
+
+    /**
+     * @description 处理方法
+     * @param
+     * @return void
+     * @authors Mr.Wu
+     * @date 2020/11/25
+     * @modified by
+     * @version 1.0
+     **/
+
     void dealmethod();
+
+
+    String getMethodName();
 }

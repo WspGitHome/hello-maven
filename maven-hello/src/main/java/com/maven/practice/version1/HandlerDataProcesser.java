@@ -1,4 +1,4 @@
-package com.maven.practice;
+package com.maven.practice.version1;
 
 /**
  * @Packagename com.maven.practice
