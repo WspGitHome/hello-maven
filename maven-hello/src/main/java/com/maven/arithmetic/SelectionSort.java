@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * @Packagename com.maven.arithmetic
  * @Classname SelectionSort
- * @Description
+ * @Description 默认第一个为min,从后面比较出最小的与其交换， 完成后设置第二为min，与之后面进行比较找出min，进行交换，以此类推 (较冒泡排序相比，交换次数大大减小)n-1 + n-2 +n-2 +...+1  = n(n-1)/2
  * @Authors Mr.Wu
  * @Date 2020/12/22 10:28
  * @Version 1.0

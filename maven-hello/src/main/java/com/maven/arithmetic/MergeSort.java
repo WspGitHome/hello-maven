@@ -3,7 +3,7 @@ package com.maven.arithmetic;
 /**
  * @Packagename com.maven.arithmetic
  * @Classname MergeSort
- * @Description
+ * @Description 两个有序的数组比较合并为一个有序数组，利用二分，初始比较两个单数 层数为log2N，复制N个元素，为Nlog2N  2Nlog2N
  * @Authors Mr.Wu
  * @Date 2020/12/23 16:44
  * @Version 1.0

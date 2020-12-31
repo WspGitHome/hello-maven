@@ -3,7 +3,7 @@ package com.maven.arithmetic;
 /**
  * @Packagename com.maven.arithmetic
  * @Classname MaoPArithMetic
- * @Description
+ * @Description 第二个元素开始与第一个比较大的放到后面，n-1 + n-2 +n-2 +...+1  = n(n-1)/2
  * @Authors Mr.Wu
  * @Date 2020/12/21 16:27
  * @Version 1.0
