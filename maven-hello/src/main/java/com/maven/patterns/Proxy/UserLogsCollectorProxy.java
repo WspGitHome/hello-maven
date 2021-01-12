@@ -37,7 +37,7 @@ public class UserLogsCollectorProxy {
     public static void main(String[] args) {
         UserLogsCollectorProxy proxy = new UserLogsCollectorProxy();
         IUserService userService = (IUserService)proxy.createProx(new UserService());
-        userService.login(new User.Builder().setName("夏明").build());
+        userService.register(new User.Builder().setName("夏明").build());
 
     }
 }

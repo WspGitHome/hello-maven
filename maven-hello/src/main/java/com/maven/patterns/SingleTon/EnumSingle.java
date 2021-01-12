@@ -9,7 +9,7 @@ package com.maven.patterns.SingleTon;
  * @Version 1.0
  */
 public class EnumSingle {
-    public EnumSingle() {
+    private EnumSingle() {
     }
 
     private enum SinlgeTon {
@@ -23,6 +23,7 @@ public class EnumSingle {
         private EnumSingle getInstance() {
             return instance;
         }
+
     }
 
     public static EnumSingle getInstance() {

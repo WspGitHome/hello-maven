@@ -1,15 +1,11 @@
 package com.maven.patterns.SingleTon;
 
-import com.maven.patterns.entity.Student;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Stack;
 
 /**
  * @Packagename com.wanfangdata.researchersbeetlfront.learn
  * @Classname StaticSingleTon
- * @Description
+ * @Description 嵌套类
  * @Authors Mr.Wu
  * @Date 2020/07/29 10:58
  * @Version 1.0
