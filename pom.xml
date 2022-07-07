@@ -27,13 +27,22 @@
         <maven-surefire-plugin>2.22.1</maven-surefire-plugin>
         <maven-plugin-api>3.6.0</maven-plugin-api>
         <maven-resources-plugin>3.1.0</maven-resources-plugin>
+        <spring-tx>5.3.8</spring-tx>
+        <hutool-version>5.7.7</hutool-version>
+        <lombok.version>1.18.10</lombok.version>
+
         <!--skip the test method1-->
         <!--<maven.test.skip>true</maven.test.skip>-->
     </properties>
 
     <dependencyManagement>
         <dependencies>
-
+            <!--工具-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -48,13 +57,21 @@
                 <version>${junit}</version>
                 <scope>test</scope>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring-tx}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.maven</groupId>
                 <artifactId>maven-plugin-api</artifactId>
                 <version>${maven-plugin-api}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.greenrobot</groupId>
                 <artifactId>eventbus</artifactId>
